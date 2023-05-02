@@ -2,15 +2,19 @@ package web.service;
 
 import web.model.Car;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarServiceImpl implements CarService {
-    public CarServiceImpl() {
+public class CarService {
+    public CarService() {
     }
 
-    @Override
-    public List<Car> getListOfCars(List<Car> carList, int value) {
-        return carList.stream().limit(value).collect(Collectors.toList());
+    public static List<Car> getListOfCars(List<Car> carList, int value) {
+        if (value <= carList.size()) {
+            return carList.stream().limit(value).collect(Collectors.toList());
+        } else  {
+            return new ArrayList<>(carList);
+        }
     }
 }
